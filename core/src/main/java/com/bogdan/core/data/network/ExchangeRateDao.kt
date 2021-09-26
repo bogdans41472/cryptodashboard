@@ -8,6 +8,7 @@ import com.bogdan.core.exception.InternalException
 import com.bogdan.core.exception.enum.InternalCryptoError
 import com.google.gson.Gson
 import io.reactivex.rxjava3.core.Single
+import java.text.DecimalFormat
 
 class ExchangeRateDao(
     private val context: Context
@@ -30,10 +31,7 @@ class ExchangeRateDao(
             )
         }
     }
-    // For instance, if the user has 0.0026 BTC
-    // and the live rate from BTC to USD is 9194.9300000000,
-    // then the USD balance for the currency is
-    // 0.0026 \* 9194.9300000000 = 23.906818 USD
+
     private fun getRate(
         currencyToExchange: String,
         desiredCurrency: String,
@@ -44,9 +42,16 @@ class ExchangeRateDao(
             if (tier.from_currency == currencyToExchange &&
                 tier.to_currency == desiredCurrency
             ) {
-                return (amount * tier.rates[0].rate.toDouble()).toString()
+                val valueToUse = change(tier.rates[0].rate)
+                return DecimalFormat("###0.00").format(amount * valueToUse).toString()
             }
         }
         return ""
     }
+
+    private fun change(value: String): Double {
+        // Using the pow() method
+        return DecimalFormat("###0.00").format(value.toBigDecimal()).toDouble()
+    }
+
 }

@@ -40,6 +40,24 @@ class CryptoSdkImpl : CryptoSdk {
             .observeOn(rxSchedulers.ui())
     }
 
+    override fun getWalletBalance(currencySymbol: String): Single<WalletData> {
+        return WalletDao(internalContext).getWalletBalance()
+            .flatMap { walletData -> getWallet(walletData, currencySymbol) }
+    }
+
+    private fun getWallet(
+        walletData: List<WalletData>,
+        currencySymbol: String
+    ): Single<WalletData> {
+        for (wallet in walletData) {
+            if (wallet.currency == currencySymbol) {
+                return Single.just(wallet)
+            }
+        }
+        return Single.error(InternalException(InternalCryptoError.CURRENCY_NOT_SUPPORTED,
+            "Currency not support"))
+    }
+
     fun initializeContext(context: Context) {
         internalContext = context
     }

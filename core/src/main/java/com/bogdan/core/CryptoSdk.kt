@@ -26,6 +26,11 @@ interface CryptoSdk {
      */
     fun getWalletBalance(): Single<List<WalletData>>
 
+    /**
+     * Returns amount in wallet of desired currency.
+     */
+    fun getWalletBalance(currencySymbol: String): Single<WalletData>
+
     companion object{
         /**
          * Returns instance of CryptoSdk.

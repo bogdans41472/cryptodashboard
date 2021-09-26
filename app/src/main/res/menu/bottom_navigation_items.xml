@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/wallet"
+        android:title="Wallet"
+        android:icon="@drawable/wallet"
+        android:gravity="center" />
+
+    <item
+        android:id="@+id/defi"
+        android:title="DeFi"
+        android:icon="@drawable/defi"
+        android:gravity="center"/>
+</menu>

@@ -9,5 +9,10 @@ enum class InternalCryptoError {
     /**
      * Returned when a rate payload is not available.
      */
-    LIVE_RATES_MISSING
+    LIVE_RATES_MISSING,
+
+    /**
+     * Returned when requested currency is not supported.
+     */
+    CURRENCY_NOT_SUPPORTED,
 }

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CryptoDashboard</string>
+    <string name="fiat_amount">$s $s</string>
 </resources>
