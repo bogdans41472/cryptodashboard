@@ -67,8 +67,8 @@ class MainFragment: Fragment() {
 
     private fun observeCardInfoChanges(recyclerView: RecyclerView) {
         val cardInfoObserver: Observer<List<CardInfo>> =
-            Observer<List<CardInfo>> { cardInfolists ->
-                val cardInfoViewAdapter = CardInfoViewAdapter(requireContext(), cardInfolists)
+            Observer<List<CardInfo>> { cardInfoList ->
+                val cardInfoViewAdapter = CardInfoViewAdapter(requireContext(), cardInfoList)
                 recyclerView.adapter = cardInfoViewAdapter
                 recyclerView.isNestedScrollingEnabled = false
             }

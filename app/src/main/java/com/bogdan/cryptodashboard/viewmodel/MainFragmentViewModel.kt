@@ -87,6 +87,7 @@ internal class MainFragmentViewModel : ViewModel() {
     }
 
     private fun handleError(it: Throwable) {
+        // Error Dialog show be added here
         Log.e(TAG, it.message, it)
     }
 
